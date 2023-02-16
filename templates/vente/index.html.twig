@@ -18,9 +18,9 @@
             {% for vente in ventes %}
                 <tr>
                     <td>{{ vente.nom }}</td>
-                    <td>{{ vente.date_debut }}</td>
-                    <td>{{ vente.date_fin }}</td>
-                    <td>{{ vente.categorieDeVente }}</td>
+                    <td>{{ vente.dateDebut|date('d/m/Y') }}</td>
+                    <td>{{ vente.dateFin|date('d/m/Y') }}</td>
+                    <td>{{ vente.categorieDeVentes.libelle }}</td>
                 </tr>
             {% endfor %}
         </tbody>
