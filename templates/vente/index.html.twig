@@ -1,0 +1,28 @@
+
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des ventes</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Date debut</th>
+                <th>Date fin</th>
+                <th>Categorie de Vente</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vente in ventes %}
+                <tr>
+                    <td>{{ vente.nom }}</td>
+                    <td>{{ vente.date_debut }}</td>
+                    <td>{{ vente.date_fin }}</td>
+                    <td>{{ vente.categorieDeVente }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
