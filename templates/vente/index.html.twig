@@ -20,7 +20,9 @@
                     <td>{{ vente.nom }}</td>
                     <td>{{ vente.dateDebut|date('d/m/Y') }}</td>
                     <td>{{ vente.dateFin|date('d/m/Y') }}</td>
-                    <td>{{ vente.categorieDeVentes.libelle }}</td>
+
+                   
+                    <td>{{ vente.categorieDeVente.libelle }}</td>
                 </tr>
             {% endfor %}
         </tbody>
