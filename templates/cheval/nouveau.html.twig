@@ -1,0 +1,20 @@
+{# templates/cheval/nouveau.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Ajouter un cheval</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.race) }}
+    {{ form_row(form.lot) }}
+    {{ form_row(form.sexe) }}
+    {{ form_row(form.sire) }}
+    {{ form_row(form.prix_de_depart) }}
+    {{ form_row(form.client) }}
+    
+
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -9,11 +9,26 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class InscriptionController extends AbstractController
 {
-    #[Route('/inscription', name: 'app_inscription')]
-    public function index(): Response
+    /**
+     * @Route("/inscription", name="inscription")
+     */
+    public function inscription(Request $request)
     {
-        return $this->render('inscription/index.html.twig', [
-            'controller_name' => 'InscriptionController',
+        $client = new Client();
+        $form = $this->createForm(ClientType::class, $client);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($client);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('accueil');
+        }
+
+        return $this->render('inscription.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 }
