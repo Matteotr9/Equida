@@ -2,7 +2,7 @@
 
 
 namespace App\Controller;
-
+use App\Entity\RaceDeCheval;
 use App\Entity\Cheval;
 use App\Form\ChevalType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,10 +17,11 @@ class ChevalController extends AbstractController
     
     public function nouveau(Request $request): Response
     {
+
         $cheval = new Cheval();
         $form = $this->createForm(ChevalType::class, $cheval);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($cheval);

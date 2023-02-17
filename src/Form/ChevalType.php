@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Form;
-
+use App\Entity\RaceDeCheval;
 use App\Entity\Cheval;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,7 +24,7 @@ class ChevalType extends AbstractType
                 'label' => 'Sexe',
                 ])
                 ->add('prix_de_depart', IntegerType::class, [
-                    'label' => 'Prix_de_depart (en €)',
+                    'label' => 'Prix de depart (en €)',
                 ])
             ->add('client')
             ->add('race', TextType::class, [

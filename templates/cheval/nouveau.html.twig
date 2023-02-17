@@ -2,13 +2,12 @@
 
 {% extends 'base.html.twig' %}
 
-{% block content %}
+{% block body %}
     <h1>Ajouter un cheval</h1>
 
     {{ form_start(form) }}
     {{ form_row(form.nom) }}
     {{ form_row(form.race) }}
-    {{ form_row(form.lot) }}
     {{ form_row(form.sexe) }}
     {{ form_row(form.sire) }}
     {{ form_row(form.prix_de_depart) }}

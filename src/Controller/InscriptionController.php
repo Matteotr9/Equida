@@ -9,9 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class InscriptionController extends AbstractController
 {
-    /**
-     * @Route("/inscription", name="inscription")
-     */
+   #[Route('/inscription', name:'inscription')]
+     
     public function inscription(Request $request)
     {
         $client = new Client();
