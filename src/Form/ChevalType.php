@@ -25,7 +25,7 @@ class ChevalType extends AbstractType
             ->add('sexe', TextType::class, [
                 'label' => 'Sexe',
                 ])
-                ->add('prix_de_depart', IntegerType::class, [
+                ->add('prixDeDepart', IntegerType::class, [
                     'label' => 'Prix de depart (en €)',
                 ])
             //->add('client', EntityType::class, array('class' => 'App\Entity\Client','choice_label' => 'Client' ))

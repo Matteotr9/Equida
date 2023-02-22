@@ -39,7 +39,7 @@ class ChevalController extends AbstractController
             $this->addFlash('success', 'Le cheval a été enregistré avec succès.');
 
 
-            return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('app_cheval_consulter', ['idCheval' => $cheval->getId()]);
         }
 
         return $this->render('cheval/nouveau.html.twig', [
@@ -48,8 +48,24 @@ class ChevalController extends AbstractController
     }
 
 
+    #[Route('/cheval/consulter/{idCheval}', name:'app_cheval_consulter')]
+    public function consulterCheval($idCheval, Request $request, ManagerRegistry $doctrine): Response
+        {
 
-    
+       // Récupération du cheval correspondant à l'identifiant
+             $cheval = $doctrine->getRepository(Cheval::class)->find(intval($idCheval));
+         // Vérification si le cheval existe
+
+         
+        
+        // Renvoi de la réponse avec les données du cheval
+             return $this->render('cheval/consulter.html.twig', [
+                 'cheval' => $cheval,
+    ]);
+
+    }
+
+
 
     
     #[Route('/cheval/modifier/{id}', name:'app_cheval_modifier')]
@@ -71,4 +87,12 @@ class ChevalController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+
+
+
+
+
+
+
 }

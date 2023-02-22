@@ -25,8 +25,7 @@ class Cheval
     #[ORM\Column(length: 1)]
     private ?string $sexe = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 2, scale: 2, nullable: true)]
-    private ?string $prix_de_depart = null;
+   
 
     #[ORM\ManyToOne(inversedBy: 'chevals')]
     #[ORM\JoinColumn(nullable: false)]
@@ -37,6 +36,11 @@ class Cheval
 
     #[ORM\OneToMany(mappedBy: 'cheval', targetEntity: Lot::class)]
     private Collection $lots;
+
+    #[ORM\Column]
+    private ?float $prixDeDepart = null;
+
+   
 
     public function __construct()
     {
@@ -84,17 +88,7 @@ class Cheval
         return $this;
     }
 
-    public function getPrixDeDepart(): ?string
-    {
-        return $this->prix_de_depart;
-    }
-
-    public function setPrixDeDepart(?string $prix_de_depart): self
-    {
-        $this->prix_de_depart = $prix_de_depart;
-
-        return $this;
-    }
+    
 
     public function getClient(): ?Client
     {
@@ -149,4 +143,18 @@ class Cheval
 
         return $this;
     }
+
+    public function getPrixDeDepart(): ?float
+    {
+        return $this->prixDeDepart;
+    }
+
+    public function setPrixDeDepart(float $prixDeDepart): self
+    {
+        $this->prixDeDepart = $prixDeDepart;
+
+        return $this;
+    }
+
+  
 }

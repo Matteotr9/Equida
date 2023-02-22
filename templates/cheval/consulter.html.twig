@@ -1,0 +1,35 @@
+{# templates/cheval/nouveau.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+<h1>Cheval : {{ cheval.nom }}</h1>
+
+<table>
+    <tr>
+        <th>Identifiant</th>
+        <td>{{ cheval.id }}</td>
+    </tr>
+    <tr>
+        <th>Nom</th>
+        <td>{{ cheval.nom }}</td>
+    </tr>
+    <tr>
+        <th>Race</th>
+        <td>{{ cheval.race.libellle}}
+    </tr>
+    <tr>
+        <th>Sexe</th>
+        <td>{{ cheval.sexe }}</td>
+    </tr>
+    <tr>
+        <th>sire</th>
+        <td>{{ cheval.sire }}</td>
+    </tr>
+    <tr>
+        <th>Prix de Départ</th>
+        <td>{{ cheval.prixDeDepart }}</td>
+    </tr>
+</table>
+{% endblock %}
