@@ -11,7 +11,7 @@ class InscriptionController extends AbstractController
 {
    #[Route('/inscription', name:'inscription')]
      
-    public function inscription(Request $request)
+    public function inscription(Request $request): Response
     {
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);

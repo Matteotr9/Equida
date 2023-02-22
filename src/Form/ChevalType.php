@@ -2,12 +2,14 @@
 
 namespace App\Form;
 use App\Entity\RaceDeCheval;
+use App\Entity\Client;
 use App\Entity\Cheval;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ChevalType extends AbstractType
 {
@@ -26,10 +28,9 @@ class ChevalType extends AbstractType
                 ->add('prix_de_depart', IntegerType::class, [
                     'label' => 'Prix de depart (en €)',
                 ])
-            ->add('client')
-            ->add('race', TextType::class, [
-                'label' => 'Race',
-            ])
+            //->add('client', EntityType::class, array('class' => 'App\Entity\Client','choice_label' => 'Client' ))
+            
+            ->add('race', EntityType::class, array('class' => 'App\Entity\RaceDeCheval','choice_label' => 'libellle' ))
         ;
     }
 

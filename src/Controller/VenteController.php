@@ -19,7 +19,7 @@ class VenteController extends AbstractController
             ->getRepository(Vente::class)
             ->findAll();*/
 
-        return $this->render('vente/index.html.twig', [
+        return $this->render('vente/lister_ventes.html.twig', [
             'ventes' => $ventes,
         ]);
     }
