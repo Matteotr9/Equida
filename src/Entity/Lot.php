@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\LotRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Entity\Cheval;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,14 +20,18 @@ class Lot
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $mise_à_prix = null;
 
-    #[ORM\ManyToOne(inversedBy: 'lots')]
-    private ?Cheval $cheval = null;
 
     #[ORM\ManyToOne(inversedBy: 'lots')]
     private ?Vente $vente = null;
 
     #[ORM\OneToMany(mappedBy: 'lot', targetEntity: Enchere::class)]
     private Collection $encheres;
+
+    #[ORM\Column]
+    private ?float $miseAPrix = null;
+
+    #[ORM\ManyToOne(inversedBy: 'lots')]
+    private ?Cheval $cheval = null;
 
     public function __construct()
     {
@@ -50,17 +55,6 @@ class Lot
         return $this;
     }
 
-    public function getCheval(): ?Cheval
-    {
-        return $this->cheval;
-    }
-
-    public function setCheval(?Cheval $cheval): self
-    {
-        $this->cheval = $cheval;
-
-        return $this;
-    }
 
     public function getVente(): ?Vente
     {
@@ -100,6 +94,30 @@ class Lot
                 $enchere->setLot(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMiseAPrix(): ?float
+    {
+        return $this->miseAPrix;
+    }
+
+    public function setMiseAPrix(float $miseAPrix): self
+    {
+        $this->miseAPrix = $miseAPrix;
+
+        return $this;
+    }
+
+    public function getCheval(): ?Cheval
+    {
+        return $this->cheval;
+    }
+
+    public function setCheval(?Cheval $cheval): self
+    {
+        $this->cheval = $cheval;
 
         return $this;
     }

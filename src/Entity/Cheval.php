@@ -34,11 +34,12 @@ class Cheval
     #[ORM\ManyToOne(inversedBy: 'chevals')]
     private ?RaceDeCheval $race = null;
 
-    #[ORM\OneToMany(mappedBy: 'cheval', targetEntity: Lot::class)]
-    private Collection $lots;
 
     #[ORM\Column]
     private ?float $prixDeDepart = null;
+
+    #[ORM\OneToMany(mappedBy: 'cheval', targetEntity: Lot::class)]
+    private Collection $lots;
 
    
 
@@ -122,6 +123,20 @@ class Cheval
         return $this->lots;
     }
 
+    
+
+    public function getPrixDeDepart(): ?float
+    {
+        return $this->prixDeDepart;
+    }
+
+    public function setPrixDeDepart(float $prixDeDepart): self
+    {
+        $this->prixDeDepart = $prixDeDepart;
+
+        return $this;
+    }
+
     public function addLot(Lot $lot): self
     {
         if (!$this->lots->contains($lot)) {
@@ -140,18 +155,6 @@ class Cheval
                 $lot->setCheval(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getPrixDeDepart(): ?float
-    {
-        return $this->prixDeDepart;
-    }
-
-    public function setPrixDeDepart(float $prixDeDepart): self
-    {
-        $this->prixDeDepart = $prixDeDepart;
 
         return $this;
     }
