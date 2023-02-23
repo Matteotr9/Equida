@@ -17,8 +17,7 @@ class Lot
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
-    private ?string $mise_à_prix = null;
+   
 
 
     #[ORM\ManyToOne(inversedBy: 'lots')]
@@ -27,11 +26,13 @@ class Lot
     #[ORM\OneToMany(mappedBy: 'lot', targetEntity: Enchere::class)]
     private Collection $encheres;
 
-    #[ORM\Column]
-    private ?float $miseAPrix = null;
+  
 
     #[ORM\ManyToOne(inversedBy: 'lots')]
     private ?Cheval $cheval = null;
+
+    #[ORM\Column]
+    private ?float $miseAPrix = null;
 
     public function __construct()
     {
@@ -43,17 +44,7 @@ class Lot
         return $this->id;
     }
 
-    public function getMiseàPrix(): ?string
-    {
-        return $this->mise_à_prix;
-    }
 
-    public function setMiseàPrix(string $mise_à_prix): self
-    {
-        $this->mise_à_prix = $mise_à_prix;
-
-        return $this;
-    }
 
 
     public function getVente(): ?Vente
@@ -98,17 +89,7 @@ class Lot
         return $this;
     }
 
-    public function getMiseAPrix(): ?float
-    {
-        return $this->miseAPrix;
-    }
-
-    public function setMiseAPrix(float $miseAPrix): self
-    {
-        $this->miseAPrix = $miseAPrix;
-
-        return $this;
-    }
+ 
 
     public function getCheval(): ?Cheval
     {
@@ -118,6 +99,18 @@ class Lot
     public function setCheval(?Cheval $cheval): self
     {
         $this->cheval = $cheval;
+
+        return $this;
+    }
+
+    public function getMiseAPrix(): ?float
+    {
+        return $this->miseAPrix;
+    }
+
+    public function setMiseAPrix(float $miseAPrix): self
+    {
+        $this->miseAPrix = $miseAPrix;
 
         return $this;
     }

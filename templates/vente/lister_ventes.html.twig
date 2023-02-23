@@ -17,7 +17,8 @@
         <tbody>
             {% for vente in ventes %}
                 <tr>
-                    <td>{{ vente.nom }}</td>
+                    <td> <a href="{{ path('app_vente_consulter', { 'idvente': vente.id}) }}">{{ vente.nom }}</a></td>
+                   
                     <td>{{ vente.dateDebut|date('d/m/Y') }}</td>
                     <td>{{ vente.dateFin|date('d/m/Y') }}</td>
                     <td>
