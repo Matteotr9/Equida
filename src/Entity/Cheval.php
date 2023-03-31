@@ -28,7 +28,7 @@ class Cheval
    
 
     #[ORM\ManyToOne(inversedBy: 'chevals')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Client $client = null;
 
     #[ORM\ManyToOne(inversedBy: 'chevals')]
@@ -41,8 +41,11 @@ class Cheval
     #[ORM\OneToMany(mappedBy: 'cheval', targetEntity: Lot::class)]
     private Collection $lots;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+  
     private ?string $image = null;
+
+    
 
    
 
@@ -173,6 +176,7 @@ class Cheval
 
         return $this;
     }
+
 
   
 }

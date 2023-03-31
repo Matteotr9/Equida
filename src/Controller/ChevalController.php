@@ -89,6 +89,21 @@ class ChevalController extends AbstractController
     }
 
 
+    #[Route('/cheval/lister', name: 'app_cheval_lister')]
+    public function getLesChevals(ManagerRegistry $doctrine): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $chevals = $entityManager->getRepository(Cheval::class)->findAll();
+       /* $ventes = $this->getDoctrine()
+            ->getRepository(Vente::class)
+            ->findAll();*/
+
+        return $this->render('cheval/lister_chevals.html.twig', [
+            'chevals' => $chevals,
+        ]);
+    }
+
+
 
 
 

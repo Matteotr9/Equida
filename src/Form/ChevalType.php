@@ -31,6 +31,7 @@ class ChevalType extends AbstractType
             //->add('client', EntityType::class, array('class' => 'App\Entity\Client','choice_label' => 'Client' ))
             
             ->add('race', EntityType::class, array('class' => 'App\Entity\RaceDeCheval','choice_label' => 'libellle' ))
+           // ->add('image', FileType::class,[ 'image' ]))
         ;
     }
 

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste Les Chevaux</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Race</th>
+                <th>Prix de Vente</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for cheval in chevals %}
+                <tr>
+                    <td> <a href="{{ path('app_cheval_consulter', { 'idCheval': cheval.id}) }}">{{ cheval.nom }}</a></td>
+                     <td>{{cheval.race.libellle }}</td>
+                     <td>{{cheval.prixDeDepart }}</td>
+                    
+                    </td>
+                </tr>
+                
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
