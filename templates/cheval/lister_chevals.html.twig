@@ -16,7 +16,7 @@
             {% for cheval in chevals %}
                 <tr>
                     <td> <a href="{{ path('app_cheval_consulter', { 'idCheval': cheval.id}) }}">{{ cheval.nom }}</a></td>
-                     <td>{{cheval.race.libellle }}</td>
+                     <td>{{cheval.race.libellle  }}</td>
                      <td>{{cheval.prixDeDepart }}</td>
                     
                     </td>
