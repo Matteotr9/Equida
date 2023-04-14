@@ -21,13 +21,11 @@
                    
                     <td>{{ vente.dateDebut|date('d/m/Y') }}</td>
                     <td>{{ vente.dateFin|date('d/m/Y') }}</td>
-                    <td>
-                    {% for CV in vente.categorieDeVentes %}
+                    <td>{{vente.categorieDeVentes.libelle }}</td>
 
-                    {{ CV.libelle }}
+                   
                     
-                    {% endfor %}
-                    </td>
+                   
                 </tr>
                 
             {% endfor %}

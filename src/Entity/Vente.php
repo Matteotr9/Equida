@@ -31,15 +31,17 @@ class Vente
     #[ORM\OneToMany(mappedBy: 'vente', targetEntity: Lot::class)]
     private Collection $lots;
 
-    #[ORM\ManyToMany(targetEntity: CategorieDeVente::class, mappedBy: 'vente')]
-    private Collection $categorieDeVentes;
+    #[ORM\ManyToOne(inversedBy: 'ventes')]
+    private ?CategorieDeVente $categorieDeVentes = null;
+
+   
 
     
 
     public function __construct()
     {
         $this->lots = new ArrayCollection();
-        $this->categorieDeVentes = new ArrayCollection();
+        
        
     }
 
@@ -126,31 +128,20 @@ class Vente
         return $this;
     }
 
-    /**
-     * @return Collection<int, CategorieDeVente>
-     */
-    public function getCategorieDeVentes(): Collection
+    public function getCategorieDeVentes(): ?CategorieDeVente
     {
         return $this->categorieDeVentes;
     }
 
-    public function addCategorieDeVente(CategorieDeVente $categorieDeVente): self
+    public function setCategorieDeVentes(?CategorieDeVente $categorieDeVentes): self
     {
-        if (!$this->categorieDeVentes->contains($categorieDeVente)) {
-            $this->categorieDeVentes->add($categorieDeVente);
-            $categorieDeVente->addVente($this);
-        }
+        $this->categorieDeVentes = $categorieDeVentes;
 
         return $this;
     }
 
-    public function removeCategorieDeVente(CategorieDeVente $categorieDeVente): self
-    {
-        if ($this->categorieDeVentes->removeElement($categorieDeVente)) {
-            $categorieDeVente->removeVente($this);
-        }
+    
+   
 
-        return $this;
-    }
 
 }

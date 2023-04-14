@@ -3,33 +3,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    
-<h1>Vente :{{ ventes.nom }} </h1>
- {% for l in ventes.lots %}  
-<table>
+ <table>
+  
+<h1>Vente : {{ ventes.nom }} du {{ ventes.dateDebut|date('d/m/Y') }} au {{ ventes.dateFin|date('d/m/Y')}}  </h1>
+ {% for l in ventes.lots  %}  
+ <tr> 
      
-      <tr>
-        <th>Nom du Cheval</th>
+      
+        <th>Nom du Cheval : </th>
        <td><a href="{{ path('app_cheval_consulter', { 'idCheval': l.cheval.id }) }}">{{ l.cheval.nom }}</a></td>
-    </tr>
-    <tr>
-        <th>Date Début</th>
-        <td>{{ ventes.dateDebut|date('d/m/Y') }}</td>
-    </tr>
-    <tr>
-        <th>Date Fin</th>
-        <td>{{ ventes.dateFin|date('d/m/Y')}}
-    </tr>
-  <tr>
-        <th>Mise A prix</th>
+    
+        <th>Race : </th>
+        <td>{{ l.cheval.race.libellle}}</td>
+   
+      
+        <th>Mise A prix : </th>
         <td>{{ l.miseAPrix }}</td>
+    
     </tr>
     
-        <tr>
-        <th>Date Vente</th>
-        <td>{{ ventes.dateVente|date('d/m/Y') }}</td>
-    </tr>
-    
-</table>
+
 {% endfor %}
+</table>
 {% endblock %}

@@ -6,8 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\CategorieDeVente;
 use App\Entity\Vente;
+use App\Entity\Client;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Form\VenteType;
 
 class VenteController extends AbstractController
 {
@@ -41,5 +44,38 @@ class VenteController extends AbstractController
                  'ventes' => $ventes,
     ]);
 
+    }
+
+
+    #[Route('/vente/nouveau', name:'app_vente_nouveau')]
+    
+    public function nouveau(Request $request, ManagerRegistry $doctrine): Response
+    {
+
+        $vente = new Vente();
+        $form = $this->createForm(VenteType::class, $vente);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            //En attendant la connexion client
+            $client= $doctrine->getRepository(Client::class)->find(1);
+           
+
+            //$entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($vente);
+            
+            $entityManager->flush();
+
+            $this->addFlash('success', 'La vente a été enregistré avec succès.');
+
+
+            return $this->redirectToRoute('app_vente_consulter', ['idvente' => $vente->getId()]);
+        }
+
+        return $this->render('vente/nouveau.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

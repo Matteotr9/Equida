@@ -24,10 +24,14 @@ class CategorieDeVente
     #[ORM\ManyToMany(targetEntity: Client::class, mappedBy: 'categorieDeVente')]
     private Collection $clients;
 
+    #[ORM\OneToMany(mappedBy: 'categorieDeVentes', targetEntity: Vente::class)]
+    private Collection $ventes;
+
     public function __construct()
     {
         $this->vente = new ArrayCollection();
         $this->clients = new ArrayCollection();
+        $this->ventes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -96,5 +100,13 @@ class CategorieDeVente
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Vente>
+     */
+    public function getVentes(): Collection
+    {
+        return $this->ventes;
     }
 }
