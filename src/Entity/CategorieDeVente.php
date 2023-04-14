@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: CategorieDeVenteRepository::class)]
 class CategorieDeVente
 {
@@ -18,20 +19,15 @@ class CategorieDeVente
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
 
-    #[ORM\ManyToMany(targetEntity: Vente::class, inversedBy: 'categorieDeVentes')]
-    private Collection $vente;
+   
 
     #[ORM\ManyToMany(targetEntity: Client::class, mappedBy: 'categorieDeVente')]
     private Collection $clients;
 
-    #[ORM\OneToMany(mappedBy: 'categorieDeVentes', targetEntity: Vente::class)]
-    private Collection $ventes;
-
     public function __construct()
     {
-        $this->vente = new ArrayCollection();
+       
         $this->clients = new ArrayCollection();
-        $this->ventes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,29 +47,7 @@ class CategorieDeVente
         return $this;
     }
 
-    /**
-     * @return Collection<int, Vente>
-     */
-    public function getVente(): Collection
-    {
-        return $this->vente;
-    }
-
-    public function addVente(Vente $vente): self
-    {
-        if (!$this->vente->contains($vente)) {
-            $this->vente->add($vente);
-        }
-
-        return $this;
-    }
-
-    public function removeVente(Vente $vente): self
-    {
-        $this->vente->removeElement($vente);
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection<int, Client>
@@ -100,13 +74,5 @@ class CategorieDeVente
         }
 
         return $this;
-    }
-
-    /**
-     * @return Collection<int, Vente>
-     */
-    public function getVentes(): Collection
-    {
-        return $this->ventes;
     }
 }
